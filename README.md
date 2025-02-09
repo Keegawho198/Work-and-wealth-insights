@@ -63,8 +63,11 @@ Post Hyperparameter tuning results:
 Post hyperparameter tuning there are minor improvements in the model across all metrics indicating better predictive power.
 
 -----------
-Here is a supertree visualisation of the model:
-*** need to upload SVG in a working way ***
+Supertree Visualisation:
+-----------
+
+<img src="https://raw.githubusercontent.com/Keegawho198/project_4/main/myDiagram.svg" width="400" alt="My Diagram">
+
 ------------
 Feature Importance:
 ------------
