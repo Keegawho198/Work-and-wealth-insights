@@ -45,13 +45,16 @@ Random Forest Regressor Trees:
 ![image](https://github.com/user-attachments/assets/0a792bf1-d7f0-4b22-b129-ae4f4fe4cea7)
 
 Metrics:
-R² Score	0.794	The model explains 79.3% of variance in the target variable. A good score, but there is still some room for improvement.
-MAE (Mean Absolute Error)	5.96	On average, predictions are 5.96 units off from actual values.
-MSE (Mean Squared Error)	60.04	Squared error, meaning larger errors have a bigger impact.
-RMSE (Root Mean Squared Error)	7.75	Errors, on average, deviate by ~7.75 units from actual values.
-MAPE (Mean Absolute Percentage Error)	39.14%	Predictions are, on average, 39.1% off from actual values. This is quite high and suggests possible issues.
+R² Score	0.794	
+MAE (Mean Absolute Error)	5.96
+MSE (Mean Squared Error)	60.04	
+RMSE (Root Mean Squared Error)	7.75	
+MAPE (Mean Absolute Percentage Error)	39.14%	
 
-Post Hyperparameter training results:
+The model has a reasonable R2 score. However, it is clear there is a large error margin, and therefore it is not yet optimised.
+As such, further hyperparameter tuning was performed to see if this improves on the metrics.
+
+Post Hyperparameter tuning results:
 ![image](https://github.com/user-attachments/assets/c783e3bf-f100-4f92-89bb-30af825817a8)
 ![image](https://github.com/user-attachments/assets/0143956e-8ac7-4996-96c1-6f8ba6993ce1)
 
