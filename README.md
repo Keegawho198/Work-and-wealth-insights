@@ -1,4 +1,4 @@
-![myDiagram](https://github.com/user-attachments/assets/e61b13cb-d484-43fb-9b48-53821671642e)# project_4
+# project_4
 Authored by: Keegan, Natasha, Lishi & Mike
 ----------
 
