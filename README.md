@@ -66,7 +66,7 @@ Post hyperparameter tuning there are minor improvements in the model across all 
 Supertree Visualisation:
 -----------
 
-<img src="https://raw.githubusercontent.com/Keegawho198/project_4/main/myDiagram.svg" width="400" alt="My Diagram">
+![My Diagram](https://github.com/Keegawho198/project_4/blob/main/myDiagram.svg?raw=true)
 
 ------------
 Feature Importance:
