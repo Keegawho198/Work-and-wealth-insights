@@ -11,8 +11,11 @@ Obtained from the Australian Bureau of Statistics are:
 2. Lending Indicators - https://www.abs.gov.au/statistics/economy/finance/lending-indicators/latest-release#data-downloads
 
 Both datasets are available under the Creative Commons Attribution Internation Licence 4.0, whereby the ABS is the original creator of this data and does not endorse this project.
+
 ----------
 Question to answer:
+----------
+
 Can a machine learning model predict the total amount of committed travel loans based upon economic indicators?
 Total travel loans committed as a surrogate for spending on non-essential items / discretionary expenditure.
 
@@ -36,6 +39,7 @@ We later encoded this variable, but did not pursue a linear regression approach 
 
 -----------
 Random Forest Regressor Trees:
+-----------
 ![image](https://github.com/user-attachments/assets/3dd20c19-a29a-41b8-872f-e221082a7e2b)
 ![image](https://github.com/user-attachments/assets/25d12403-7b81-4616-a0e7-3225f81f04a2)
 ![image](https://github.com/user-attachments/assets/0a792bf1-d7f0-4b22-b129-ae4f4fe4cea7)
@@ -60,12 +64,14 @@ Here is a supertree visualisation of the model:
 *** need to upload SVG in a working way ***
 ------------
 Feature Importance:
+------------
 
 ![image](https://github.com/user-attachments/assets/7b518118-d2c6-4140-9d84-1eacc95f61a0)
 
 You can see key features in this model focus on Full Time Employment for females, Employment-to-population ratio for males, Full-time Employment for males and Food expenditure. 
 -----------
 Libraries and Dependencies:
+-----------
 Data Processing: Pandas/Numpy
 
 Modelling:
