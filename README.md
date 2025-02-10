@@ -9,6 +9,7 @@ Datasets:
 Obtained from the Australian Bureau of Statistics are:
 1. Labour Force - https://www.abs.gov.au/statistics/labour/employment-and-unemployment/labour-force-australia/latest-release#data-downloads
 2. Lending Indicators - https://www.abs.gov.au/statistics/economy/finance/lending-indicators/latest-release#data-downloads
+3. Monthly Household Spending Indicators - https://www.abs.gov.au/statistics/economy/finance/monthly-household-spending-indicator/latest-release#data-downloads
 
 Both datasets are available under the Creative Commons Attribution Internation Licence 4.0, whereby the ABS is the original creator of this data and does not endorse this project.
 
@@ -35,7 +36,7 @@ Model Features from the data sets:
 
 Model choice:
 As Month as a categorical variable, and opted to choose Random Forest Regressor Modelling with hyperparameter tuning.
-We later encoded this variable, but did not pursue a linear regression approach (linear regression not suitable for string/categorical variables).
+Despite later removing Time as a feature, we still implemented the model as it best suited the features we settled on.
 
 -----------
 Random Forest Regressor Trees:
@@ -80,7 +81,7 @@ You can see key features in this model focus on Full Time Employment for females
 -----------
 Libraries and Dependencies:
 -----------
-Data Processing: Pandas/Numpy
+Data Processing: Pandas/Numpy, SQL
 
 Modelling:
 sklearn, scipy
