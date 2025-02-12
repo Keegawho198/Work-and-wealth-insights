@@ -2,7 +2,7 @@
 Authored by: Keegan, Natasha, Lishi & Mike
 ----------
 
-This project is a machine learning project aiming to train a model able to adequately predict an association (with >75% accuracy) based on publically available data.
+This project is a machine learning project aiming to train a model able to adequately predict an association (with >75% accuracy or R2 > 0.8) based on publically available data.
 We were keen to evaluate the labour market and the impact of employment upon discretionary expenditure.
 
 Datasets:
@@ -21,70 +21,89 @@ Can a machine learning model predict the total amount of committed travel loans 
 Total travel loans committed as a surrogate for spending on non-essential items / discretionary expenditure.
 
 Data Handling/ETL:
-Data tables were cleaned, merged and checked for duplicates and null values. nil existed
+Data tables were cleaned, merged and checked for duplicates and null values.
+Outliers were estimated and removed from the data set.
 Data required normalisation and standarisation prior to development of the model
 
 Dates from 01-2015 -> 09-2024 (limit of data from Travel Loans)
 
-Model Features from the data sets:
+Model Features from the original data sets:
 1. Employed Males (Full Time)
 2. Employed Females (Full Time)
 3. Employment-To-Population Ratio (Males)
 4. Employment-To-Population Ratio (Females)
 5. Food Spend (Household)
 6. Clothing & Footwear Spend (Total)
+7. Month
+8. Year
 
+![Fig1_data_histogram](https://github.com/user-attachments/assets/6cd8bca8-f6d0-4d32-abb8-55da9e9fcef9)
+Fig.1. Detailing the data spread and distribution of values
+
+![Fig2_correlation_matrix](https://github.com/user-attachments/assets/3a968985-ca3a-44a5-b905-b03542d74a66)
+Fig.2. Correlation matrix, after which we removed poorly correlated data - Employed Males (Full Time), Month and Year
+
+-----------
 Model choice:
-As Month as a categorical variable, and opted to choose Random Forest Regressor Modelling with hyperparameter tuning.
-Despite later removing Time as a feature, we still implemented the model as it best suited the features we settled on.
+-----------
+We are aware of the limitations of our data, namely small sized dataset with multiple variables that may not have linear relationships.
+
+As such we opted to test / develop one of the following models:
+1. Random Forest Regressor
+2. Gradient Boosted Model
+3. SVM
 
 -----------
 Random Forest Regressor Trees:
 -----------
-![image](https://github.com/user-attachments/assets/3dd20c19-a29a-41b8-872f-e221082a7e2b)
-![image](https://github.com/user-attachments/assets/25d12403-7b81-4616-a0e7-3225f81f04a2)
-![image](https://github.com/user-attachments/assets/0a792bf1-d7f0-4b22-b129-ae4f4fe4cea7)
 
-Metrics:
-R² Score	0.794	
-MAE (Mean Absolute Error)	5.96
-MSE (Mean Squared Error)	60.04	
-RMSE (Root Mean Squared Error)	7.75	
-MAPE (Mean Absolute Percentage Error)	39.14%	
+![Fig5_Decision Tree for Random Forest Regressor (1)](https://github.com/user-attachments/assets/0fa32c1b-68ae-4622-8da9-ad8f1a272045)
+Fig.3. Random Forest Regressor Model Tree
 
-The model has a reasonable R2 score. However, it is clear there is a large error margin, and therefore it is not yet optimised.
-As such, further hyperparameter tuning was performed to see if this improves on the metrics.
+We initially chose a random forest regressor model, which had a R² Score on Test Data: 0.7320.
 
-Post Hyperparameter tuning results:
-![image](https://github.com/user-attachments/assets/c783e3bf-f100-4f92-89bb-30af825817a8)
-![image](https://github.com/user-attachments/assets/0143956e-8ac7-4996-96c1-6f8ba6993ce1)
-
-![image](https://github.com/user-attachments/assets/8150eca0-f1d0-4a10-b5be-2e5711cabd0e)
-
-Post hyperparameter tuning there are minor improvements in the model across all metrics indicating better predictive power.
-
------------
-Random Forest Visualisation:
------------
-![Fig5_Decision Tree for Random Forest Regressor](https://github.com/user-attachments/assets/8c884624-7ee4-4c39-b690-a3d2d1706404)
+Given this was suboptimal, we opted to attempt hyperparameter tuning.
+The best hyperparameter settings were: bootstrap: True, max_depth: None, max_features: log2, min_samples_leaf: 1, min_samples_split: 2, n_estimators: 1942
+R² Score on Test Data: 0.7634 which was a modest improvement on the previous model. However on cross-valiation the R2 score was 0.8382
 
 ------------
-Feature Importance:
+Feature Importance of Random Forest Regressor:
 ------------
 
-![image](https://github.com/user-attachments/assets/7b518118-d2c6-4140-9d84-1eacc95f61a0)
+![Fig3_feature importance](https://github.com/user-attachments/assets/13b26dda-eaad-4648-96f6-120fc1c1a970)
+Fig.4. Feature Importance of Random Forest Regressor Model
+Key Features in this model focused on employment data - Female Employed (Full Time), Employment-To-Population Ratio (Males), and Employment-to-Population Ratio (Females). Interestingly, clothing and footwear expenditure proved to be of lower significance. 
 
------------
-You can see key features in this model focus on Full Time Employment for females, Employment-to-population ratio for males, Full-time Employment for males and Food expenditure. 
+------------
+Learning Curves:
+------------
+
+![Fig4_Learning Curve](https://github.com/user-attachments/assets/e4700d12-c919-49fe-b9a4-a4ec997a2a3a)
+Fig.5. Learning curve based on training size.
+Learning curve indicates significant improvement with training size. 
+
+------------
+SVM & GBR Models (with hyperparameter tuning):
+------------
+Although our inital model proved to have reasonable performance, we pursued other models to see if we could improve on our results.
+Our SVM model used the following parameters: {'C': 100, 'degree': 2, 'epsilon': 1.0, 'gamma': 'scale', 'kernel': 'rbf'}
+SVM test R² Score: 0.6630911256666858
+
+Our GBR model using the following hyperparamters: {'learning_rate': 0.09687887310208573, 'max_depth': 3, 'min_samples_leaf': 2, 'min_samples_split': 2, 'n_estimators': 500, 'subsample': 0.93378481193262}
+R² Score on Test Data: 0.8193
+Best R² Score from RandomizedSearchCV: 0.2895
+
+the SVM model did not perform well on our testing data compared to our Random Forest Regressor, so we chose not to use it further.
+Our GBR initially proved promising, however it performed very poorly on further testing.
+
 -----------
 Libraries and Dependencies:
 -----------
 Data Processing: Pandas/Numpy, SQL
 
-Modelling:
-sklearn, scipy
+Modelling: sklearn, scipy
 
-Visualisations: Pandas, matplotlib, graphviz, supertree
+Visualisations: Pandas, matplotlib, graphviz
 
 ----------
 Thank You
