@@ -25,7 +25,7 @@ Data tables were cleaned, merged and checked for duplicates and null values.
 Outliers were estimated and removed from the data set.
 Data required normalisation and standarisation prior to development of the model
 
-Dates from 01-2015 -> 09-2024 (limit of data from Travel Loans)
+Dates from 01-2014 -> 09-2024 (limit of data from Travel Loans)
 
 Model Features from the original data sets:
 1. Employed Males (Full Time)
@@ -51,7 +51,7 @@ We are aware of the limitations of our data, namely small sized dataset with mul
 As such we opted to test / develop one of the following models:
 1. Random Forest Regressor
 2. Gradient Boosted Model
-3. SVM
+3. SVR
 
 -----------
 Random Forest Regressor Trees:
@@ -83,18 +83,35 @@ Fig.5. Learning curve based on training size.
 Learning curve indicates significant improvement with training size. 
 
 ------------
-SVM & GBR Models (with hyperparameter tuning):
+SVR & GBR Models (with hyperparameter tuning):
 ------------
 Although our inital model proved to have reasonable performance, we pursued other models to see if we could improve on our results.
-Our SVM model used the following parameters: {'C': 100, 'degree': 2, 'epsilon': 1.0, 'gamma': 'scale', 'kernel': 'rbf'}
-SVM test R² Score: 0.6630911256666858
+Our SVR model used the following parameters: {'C': 100, 'degree': 2, 'epsilon': 1.0, 'gamma': 'scale', 'kernel': 'rbf'}
+SVR test R² Score: 0.6630911256666858
 
 Our GBR model using the following hyperparamters: {'learning_rate': 0.09687887310208573, 'max_depth': 3, 'min_samples_leaf': 2, 'min_samples_split': 2, 'n_estimators': 500, 'subsample': 0.93378481193262}
 R² Score on Test Data: 0.8193
 Best R² Score from RandomizedSearchCV: 0.2895
 
-the SVM model did not perform well on our testing data compared to our Random Forest Regressor, so we chose not to use it further.
+the SVR model did not perform well on our testing data compared to our Random Forest Regressor, so we chose not to use it further.
 Our GBR initially proved promising, however it performed very poorly on further testing.
+
+-----------
+Findings
+-----------
+
+Random Forest Regressor Model proved to be the best
+Strong correlation with economic datapoints, less so with spending (interestingly)
+Strongest predictor was Female Employment (Full Time)
+
+-----------
+Limitations
+-----------
+
+Data set is small, limited definition of discretionary expenditure and the model has large variability / error.
+Further modelling could consider time-based analysis (but this is tricky with the current data)
+We could expand the definition of employment data (use seek job adverts etc)
+Could expand definition of discretionary spend to include expenditure of all non essential goods and services.
 
 -----------
 Libraries and Dependencies:
