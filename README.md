@@ -93,7 +93,7 @@ Our GBR model using the following hyperparamters: {'learning_rate': 0.0968788731
 R² Score on Test Data: 0.8193
 Best R² Score from RandomizedSearchCV: 0.2895
 
-the SVR model did not perform well on our testing data compared to our Random Forest Regressor, so we chose not to use it further.
+The SVR model did not perform well on our testing data compared to our Random Forest Regressor, so we chose not to use it further.
 Our GBR initially proved promising, however it performed very poorly on further testing.
 
 -----------
