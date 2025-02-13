@@ -1,4 +1,4 @@
-# project_4
+# Work & Wealth 
 Authored by: Keegan, Natasha, Lishi & Mike
 ----------
 
